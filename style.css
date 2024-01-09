@@ -56,6 +56,11 @@ main {
   align-items: center;
 }
 
+.up:hover, .up:active {
+  background-color: chocolate;
+  color: wheat;
+}
+
 .down {
   display: none;
 }
