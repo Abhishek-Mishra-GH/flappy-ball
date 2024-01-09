@@ -62,7 +62,7 @@ main {
 
 #obs1, #obs2 {
   position: fixed;
-  height: 20dvh;
+  height: 10dvh;
   width: 40px;
   background-color: chocolate;
 }
