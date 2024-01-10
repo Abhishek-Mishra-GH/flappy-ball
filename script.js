@@ -116,11 +116,13 @@ function checkCol(obs, oCords, obsType) {
   const bCords = ball.getBoundingClientRect();
   const bb = bCords.bottom;
   const bt = bCords.top;
+  const br = bCords.right;
+  const or = oCords.right;
   const ob = oCords.bottom;
   const ot = oCords.top;
   const ol = oCords.left;
   if(obsType) {
-    if(bt<=ob && ballRight>=ol) return true;
+    if(bt<=ob && ballRight>=ol && br < or) return true;
     else return false;
   } else {
     if(bb>=ot && ballRight>=ol) return true;
