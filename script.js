@@ -3,10 +3,9 @@ function gebi(id) {
 }
 
 const ball = gebi("ball");
-let ballCords=ball.getBoundingClientRect();
-let ballRight=ballCords.ballCords.right;
+let ballCords=ball.getBoundingClientRect()
+let ballRight=ballCords.right;
 let ballLeft=ballCords.left;
-
 const box = gebi("box")
 const boxBounds = box.getBoundingClientRect();
 const up = gebi("up");
@@ -57,6 +56,22 @@ down.addEventListener("touchend", () => {
   cancelAnimationFrame(frameid);
 })
 
+
+function moveBall() {
+  let ballCords=ball.getBoundingClientRect();
+  let ballLeft = ballCords.left;
+  let ballRight = ballCords.right;
+  
+  if(ballLeft <= boxBounds.left || ballRight >= boxBounds.right) {
+      x = !x;
+  }
+  
+  ball.style.left = x ? ballLeft+3+"px" : ballLeft-3+"px";
+    
+    requestAnimationFrame(moveBall);
+}
+//requestAnimationFrame(moveBall);
+
 const obs1 = gebi("obs1");
 const obs2 = gebi("obs2");
 let cFrame;
@@ -76,15 +91,18 @@ function moveObs(obs, t) {
     return;
   }
   
+  let currSpeed = 3;
+  
   if(obsLeft <= boxBounds.left-40) {
     cancelAnimationFrame(cFrame);
     t = !t;
     let scoreValue = Number(score.innerHTML);
     score.innerHTML = scoreValue+1;
     obs.style.left = boxBounds.right + "px";
+    currSpeed=currSpeed+((currSpeed/100)*50);
     configObs();
   } else {
-    obs.style.left = ((obsLeft) - 4.5) + "px";
+    obs.style.left = ((obsLeft) - currSpeed) + "px";
   }
   
   let xObs;
@@ -103,15 +121,15 @@ function checkCol(obs, oCords, obsType) {
   const bCords = ball.getBoundingClientRect();
   const bb = bCords.bottom;
   const bt = bCords.top;
-  const or = oCords.right;
   const ob = oCords.bottom;
   const ot = oCords.top;
   const ol = oCords.left;
+  const or = oCords.right;
   if(obsType) {
-    if(bt<=ob && ballRight>=ol && ballLeft < or) return true;
+    if(bt<=ob && ballRight>=ol && ballLeft<or) return true;
     else return false;
   } else {
-    if(bb>=ot && ballRight>=ol) return true;
+    if(bb>=ot && ballRight>=ol && ballLeft < or) return true;
     else return false;
   }
 }
