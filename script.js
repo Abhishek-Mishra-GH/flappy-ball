@@ -2,8 +2,6 @@ function gebi(id) {
   return document.getElementById(id);
 }
 
-alert("welcome Nishant");
-
 const ball = gebi("ball");
 let ballCords=ball.getBoundingClientRect()
 let ballRight=ballCords.right;
@@ -77,10 +75,11 @@ function moveBall() {
 const obs1 = gebi("obs1");
 const obs2 = gebi("obs2");
 let cFrame;
+let currSpeed = 4;
 
 function configObs() {
-  obs1.style.height=(38*Math.random())+"dvh";
-  obs2.style.height=(38*Math.random())+"dvh";
+  obs1.style.height=(35*Math.random())+"dvh";
+  obs2.style.height=(35*Math.random())+"dvh";
 }
 
 function moveObs(obs, t) {
@@ -93,7 +92,6 @@ function moveObs(obs, t) {
     return;
   }
   
-  let currSpeed = 3;
   
   if(obsLeft <= boxBounds.left-40) {
     cancelAnimationFrame(cFrame);
@@ -101,7 +99,9 @@ function moveObs(obs, t) {
     let scoreValue = Number(score.innerHTML);
     score.innerHTML = scoreValue+1;
     obs.style.left = boxBounds.right + "px";
-    currSpeed=currSpeed+((currSpeed/100)*50);
+    if(currSpeed > 0 && currSpeed % 5 == 0) {
+      currSpeed=currSpeed+((currSpeed/100)*50);
+    }
     configObs();
   } else {
     obs.style.left = ((obsLeft) - currSpeed) + "px";
