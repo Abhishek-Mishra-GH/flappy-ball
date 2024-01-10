@@ -2,6 +2,8 @@ function gebi(id) {
   return document.getElementById(id);
 }
 
+alert("welcome Nishant");
+
 const ball = gebi("ball");
 let ballCords=ball.getBoundingClientRect()
 let ballRight=ballCords.right;
