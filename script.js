@@ -99,8 +99,8 @@ function moveObs(obs, t) {
     let scoreValue = Number(score.innerHTML);
     score.innerHTML = scoreValue+1;
     obs.style.left = boxBounds.right + "px";
-    if(currSpeed > 0 && currSpeed % 5 == 0) {
-      currSpeed=currSpeed+((currSpeed/100)*50);
+    if(score > 0 && score % 5 == 0) {
+      currSpeed=currSpeed+((currSpeed/100)*2);
     }
     configObs();
   } else {
